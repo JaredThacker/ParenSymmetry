@@ -1,4 +1,6 @@
+import java.io.*;
 import java.util.Stack;
+import java.util.Scanner;
 
 public class ParenSymmetry {
 
@@ -30,14 +32,19 @@ public class ParenSymmetry {
         return Balance.isEmpty();
     }
 
-    private void checkFile(String filename) {
-        // open file named filename
+    private void checkFile(String filename) throws IOException {
+        FileInputStream fis = new FileInputStream(filename);
+        Scanner scan = new Scanner(fis);
+        while(scan.hasNextLine()){
+            String nextLine = (scan.nextLine());
+            if(isBalanced(nextLine)){
+                System.out.println("Balanced");
+            }else{
+                System.out.println("Not Balanced");
+            }
+        }
 
-        // for each line in the file
-            // read the line
-            // print whether or not the line's parenthesis are balanced
-
-        // CLOSE the file
+        fis.close();
     }
 
     public static void main(String[] args) {
