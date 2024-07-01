@@ -1,10 +1,33 @@
+import java.util.Stack;
 
 public class ParenSymmetry {
 
 
     private Boolean isBalanced(String s) {
-        // implement this method
-        return null;
+        Stack Balance = new Stack();
+
+        if(!s.contains("(") && !s.contains(")")) {
+            return false;
+        }
+
+        for (char i : s.toCharArray()){
+            switch(i){
+                case '(':{
+                    Balance.add(i);
+                    break;
+                }
+                case ')':{
+                    if (!Balance.isEmpty())
+                    {
+                        Balance.pop();
+                    }else{
+                        return false;
+                    }
+                    break;
+                }
+            }
+        }
+        return Balance.isEmpty();
     }
 
     private void checkFile(String filename) {
