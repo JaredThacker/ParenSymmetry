@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class ParenSymmetry {
 
 
-    private Boolean isBalanced(String s) {
+    private static Boolean isBalanced(String s) {
         Stack Balance = new Stack();
 
         if(!s.contains("(") && !s.contains(")")) {
@@ -32,22 +32,22 @@ public class ParenSymmetry {
         return Balance.isEmpty();
     }
 
-    private void checkFile(String filename) throws IOException {
+    private static void checkFile(String filename) throws IOException {
         FileInputStream fis = new FileInputStream(filename);
         Scanner scan = new Scanner(fis);
         while(scan.hasNextLine()){
             String nextLine = (scan.nextLine());
             if(isBalanced(nextLine)){
-                System.out.println("Balanced");
+                System.out.println("Balanced: true");
             }else{
-                System.out.println("Not Balanced");
+                System.out.println("Not Balanced: false");
             }
         }
 
         fis.close();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         ParenSymmetry ps = new ParenSymmetry();
 
         Boolean b0 = ps.isBalanced("()");
@@ -66,6 +66,7 @@ public class ParenSymmetry {
             trues = ps.isBalanced(strToTest);
         }
         printResult(trues, true);
+        checkFile("TestStrings0.txt");
 
     }
 
